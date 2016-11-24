@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>936</width>
-    <height>583</height>
+    <width>1215</width>
+    <height>688</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,16 @@
     <property name="spacing">
      <number>6</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>9</number>
+    </property>
+    <property name="topMargin">
+     <number>9</number>
+    </property>
+    <property name="rightMargin">
+     <number>9</number>
+    </property>
+    <property name="bottomMargin">
      <number>9</number>
     </property>
     <item>
@@ -26,7 +35,16 @@
       <property name="spacing">
        <number>6</number>
       </property>
-      <property name="margin">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
        <number>0</number>
       </property>
       <item>
@@ -50,7 +68,16 @@
       <property name="spacing">
        <number>6</number>
       </property>
-      <property name="margin">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
        <number>0</number>
       </property>
       <item>
@@ -92,7 +119,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>936</width>
+     <width>1215</width>
      <height>23</height>
     </rect>
    </property>
@@ -103,6 +130,7 @@
     <addaction name="actionE_xit"/>
     <addaction name="actionInput_image_size"/>
     <addaction name="actionInput_the_number_of_image_series"/>
+    <addaction name="actionInput_data_space"/>
    </widget>
    <widget class="QMenu" name="menuVolume_Rendering">
     <property name="title">
@@ -172,6 +200,11 @@
   <action name="actionNewMarchingCubes">
    <property name="text">
     <string>NewMarchingCubes</string>
+   </property>
+  </action>
+  <action name="actionInput_data_space">
+   <property name="text">
+    <string>Input data space</string>
    </property>
   </action>
  </widget>

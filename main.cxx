@@ -2,6 +2,7 @@
 
 #include "GUI.h"
 
+
 int main(int argc, char** argv)
 {
   QVTKApplication app(argc, argv);

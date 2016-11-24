@@ -31,6 +31,7 @@ public slots:
 
   void on_actionInput_image_size_triggered();
   void on_actionInput_the_number_of_image_series_triggered();
+  void on_actionInput_data_space_triggered();
 
   void on_actionRayCasting_triggered();
   void on_actionTextureMapper2D_triggered();
@@ -49,6 +50,10 @@ protected:
   int ImageLength;
   int ImageWidth;
   int NumberOfImages;
+
+  int XDataSpace;
+  int YDataSpace;
+  int ZDataSpace;
 };
 
 #endif // _GUI_h

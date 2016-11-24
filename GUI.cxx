@@ -247,8 +247,7 @@ void GUI::color2(QAction* color)
 void GUI::on_actionInput_image_size_triggered()
 {
 	ImageLength=QInputDialog::getInt(NULL,tr(" "),tr("please input the length of each image:"));
-	ImageWidth=QInputDialog::getInt(NULL,tr(" "),tr("please input the width of each image:"));
-    
+	ImageWidth=QInputDialog::getInt(NULL,tr(" "),tr("please input the width of each image:"));    
 }
 
 void GUI::on_actionInput_the_number_of_image_series_triggered()
@@ -256,6 +255,12 @@ void GUI::on_actionInput_the_number_of_image_series_triggered()
     NumberOfImages=QInputDialog::getInt(NULL,tr(" "),tr("please input the number of image series:"));
 }
 
+void GUI::on_actionInput_data_space_triggered()
+{
+	XDataSpace=QInputDialog::getInt(NULL,tr(" "),tr("please input the X axis data space:"));
+	YDataSpace=QInputDialog::getInt(NULL,tr(" "),tr("please input the Y axis data space:")); 
+	ZDataSpace=QInputDialog::getInt(NULL,tr(" "),tr("please input the Z axis data space:")); 
+}
 
 void GUI::on_actionRayCasting_triggered()
 {
@@ -275,12 +280,12 @@ void GUI::on_actionRayCasting_triggered()
 	pngReader->SetFilePrefix(FilePrefix);
 	pngReader->SetFilePattern("%s%03d.png");// 图片文件名格式，此处为 001.png 015.png ...
 	pngReader->SetDataByteOrderToLittleEndian();
-	pngReader->SetDataSpacing(1, 1, 1);  // 设置图片中像素比，我理解得不清楚，具体请百度之 
+	pngReader->SetDataSpacing(XDataSpace, YDataSpace, ZDataSpace);  // 设置图片中像素比，我理解得不清楚，具体请百度之 
 	pngReader->SetFileNameSliceSpacing(1);
 	//pngReader->SetDataExtent(0, 109, 0, 109, 1, 29);
-	// 这里因为在P01文件夹里面有0.png ~ 15.png，所以设置为 1，29
+	// 这里因为在P01文件夹里面有0.png ~ 29.png，所以设置为 0，29
 	// 每张图片的长宽为110 * 110 因此设置为0，109
-	pngReader->SetDataExtent(0, ImageLength-1, 0, ImageWidth-1, 1, NumberOfImages);
+	pngReader->SetDataExtent(0, ImageLength-1, 0, ImageWidth-1, 0, NumberOfImages-1);
 	pngReader->Update(); 
 
 	vtkSmartPointer<vtkVolumeRayCastCompositeFunction> rayCastFun = 
@@ -358,12 +363,12 @@ void GUI::on_actionTextureMapper2D_triggered()
 	pngReader->SetFilePrefix(FilePrefix);
 	pngReader->SetFilePattern("%s%03d.png");// 图片文件名格式，此处为 001.png 015.png ...
 	pngReader->SetDataByteOrderToLittleEndian();
-	pngReader->SetDataSpacing(1, 1, 1);  // 设置图片中像素比，我理解得不清楚，具体请百度之 
+	pngReader->SetDataSpacing(XDataSpace, YDataSpace, ZDataSpace);  // 设置图片中像素比，我理解得不清楚，具体请百度之 
 	pngReader->SetFileNameSliceSpacing(1);
 	//pngReader->SetDataExtent(0, 109, 0, 109, 1, 29);
-	// 这里因为在P01文件夹里面有0.png ~ 15.png，所以设置为 1，29
+	// 这里因为在P01文件夹里面有0.png ~ 29.png，所以设置为 0，29
 	// 每张图片的长宽为110 * 110 因此设置为0，109
-	pngReader->SetDataExtent(0, ImageLength-1, 0, ImageWidth-1, 1, NumberOfImages);
+	pngReader->SetDataExtent(0, ImageLength-1, 0, ImageWidth-1, 0, NumberOfImages-1);
 	pngReader->Update(); 
 
 	vtkSmartPointer<vtkVolumeTextureMapper2D> volumeMapper = 
@@ -429,12 +434,12 @@ void GUI::on_actionTextureMapper3D_triggered()
 	pngReader->SetFilePrefix(FilePrefix);
 	pngReader->SetFilePattern("%s%03d.png");// 图片文件名格式，此处为 001.png 015.png ...
 	pngReader->SetDataByteOrderToLittleEndian();
-	pngReader->SetDataSpacing(1, 1, 1);  // 设置图片中像素比，我理解得不清楚，具体请百度之 
+	pngReader->SetDataSpacing(XDataSpace, YDataSpace, ZDataSpace);  // 设置图片中像素比，我理解得不清楚，具体请百度之 
 	pngReader->SetFileNameSliceSpacing(1);
 	//pngReader->SetDataExtent(0, 109, 0, 109, 1, 29);
-	// 这里因为在P01文件夹里面有0.png ~ 15.png，所以设置为 1，29
+	// 这里因为在P01文件夹里面有0.png ~ 15.png，所以设置为 0，29
 	// 每张图片的长宽为110 * 110 因此设置为0，109
-	pngReader->SetDataExtent(0, ImageLength-1, 0, ImageWidth-1, 1, NumberOfImages);
+	pngReader->SetDataExtent(0, ImageLength-1, 0, ImageWidth-1, 0, NumberOfImages-1);
 	pngReader->Update(); 
 
 	vtkSmartPointer<vtkVolumeTextureMapper3D> volumeMapper = 
@@ -502,12 +507,12 @@ void GUI::on_actionMarchingCubes_triggered()
     pngReader->SetFilePrefix(FilePrefix);
 	pngReader->SetFilePattern("%s%03d.png");// 图片文件名格式，此处为 001.png 015.png ...
 	pngReader->SetDataByteOrderToLittleEndian();
-	pngReader->SetDataSpacing(1, 1, 1);  // 设置图片中像素比，
+	pngReader->SetDataSpacing(XDataSpace, YDataSpace, ZDataSpace);  // 设置图片中像素比，
 	pngReader->SetFileNameSliceSpacing(1); 
 	//pngReader->SetDataExtent(0, 109, 0, 109, 1, 29);
-	// 这里因为在P01文件夹里面有0.png ~ 15.png，所以设置为 1，15
+	// 这里因为在P01文件夹里面有0.png ~ 29.png，所以设置为 0，29
 	// 每张图片的长宽为110 * 110 因此设置为0，109
-    pngReader->SetDataExtent(0, ImageLength-1, 0, ImageWidth-1, 1, NumberOfImages);
+    pngReader->SetDataExtent(0, ImageLength-1, 0, ImageWidth-1, 0, NumberOfImages-1);
 	pngReader->Update();
 
 	double isoValue=QInputDialog::getDouble(NULL,tr(" "),tr("please input the isovalue:"));
@@ -559,12 +564,12 @@ void GUI::on_actionNewMarchingCubes_triggered()
     BinaryPNGReader->SetFilePrefix(BinaryFilePrefix); 
 	BinaryPNGReader->SetFilePattern("%s%03d.png");// 图片文件名格式，此处为 001.png 015.png ...
 	BinaryPNGReader->SetDataByteOrderToLittleEndian();
-	BinaryPNGReader->SetDataSpacing(1, 1, 1);  // 设置三维数据场中像素间距，
+	BinaryPNGReader->SetDataSpacing(XDataSpace, YDataSpace, ZDataSpace);  // 设置三维数据场中像素间距，
 	BinaryPNGReader->SetFileNameSliceSpacing(1); 
 	//BinaryPNGReader->SetDataExtent(0, 109, 0, 109, 1, 29);   //多设置一层，可使顶层有造一个面出来，又能延拓一个连通区域
-	// 这里因为在P01文件夹里面有0.png ~ 15.png，所以设置为 1，29
+	// 这里因为在P01文件夹里面有0.png ~ 29.png，所以设置为 0，29
 	// 每张图片的长宽为110 * 110 因此设置为0，109
-	BinaryPNGReader->SetDataExtent(0, ImageLength-1, 0, ImageWidth-1, 1, NumberOfImages); 
+	BinaryPNGReader->SetDataExtent(0, ImageLength-1, 0, ImageWidth-1, 0, NumberOfImages-1); 
 	BinaryPNGReader->Update();  
 	BinaryVolume->DeepCopy(BinaryPNGReader->GetOutput());
 
@@ -587,12 +592,12 @@ void GUI::on_actionNewMarchingCubes_triggered()
     OriginalPNGReader->SetFilePrefix(OriginalFilePrefix);
 	OriginalPNGReader->SetFilePattern("%s%03d.png");// 图片文件名格式，此处为 001.png 015.png ...
 	OriginalPNGReader->SetDataByteOrderToLittleEndian();
-	OriginalPNGReader->SetDataSpacing(1, 1, 1);  // 设置三维数据场中像素间距，
+	OriginalPNGReader->SetDataSpacing(XDataSpace, YDataSpace, ZDataSpace);  // 设置三维数据场中像素间距，
 	OriginalPNGReader->SetFileNameSliceSpacing(1); 
 	//OriginalPNGReader->SetDataExtent(0, 109, 0, 109, 1, 30); //多设置一层，可使顶层有造一个面出来，又能延拓一个连通区域
-	// 这里因为在P01文件夹里面有0.png ~ 57.png，所以设置为 1，29
+	// 这里因为在P01文件夹里面有0.png ~ 29.png，所以设置为 0，29
 	// 每张图片的长宽为110 * 110 因此设置为0，109
-    OriginalPNGReader->SetDataExtent(0, ImageLength-1, 0, ImageWidth-1, 1, NumberOfImages); 
+    OriginalPNGReader->SetDataExtent(0, ImageLength-1, 0, ImageWidth-1, 0, NumberOfImages-1); 
 	OriginalPNGReader->Update(); 
 	OriginalVolume->DeepCopy(OriginalPNGReader->GetOutput());
 
